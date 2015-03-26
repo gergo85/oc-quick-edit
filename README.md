@@ -1,4 +1,4 @@
-##Euick Edit plugin for October CMS
+##Quick Edit plugin for October CMS
 This plugin added a quick edit widget for content of CMS pages.
 
 ###Available languages
