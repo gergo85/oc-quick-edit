@@ -1,0 +1,39 @@
+<div class="report-widget">
+    <h3 style="margin-bottom:25px;"><?= e(trans($this->property('title'))) ?></h3>
+    <form>
+        <p>
+            <select name="page" id="QeditSelect" onchange="QeditPage(this);" class="form-control custom-select" style="width:100%;">
+                <option value=""><?= e(trans('indikator.qedit::lang.widget.select')) ?></option>
+                <?= $pages ?>
+            </select>
+        </p>
+        <p>
+            <div<?php if ($this->property('editor') == 'rich') echo ' class="field-richeditor" data-control="richeditor"'; ?> style="height:<?= $this->property('height') ?>px;overflow:scroll;">
+                <textarea name="content" id="QeditTextarea"<?php if ($this->property('editor') == 'none') echo ' style="height:'.$this->property('height').'px;width:100%;"'; ?>></textarea>
+            </div>
+        </p>
+        <p>
+            <button
+                type="submit"
+                data-request="<?= $this->getEventHandler('onQeditSave') ?>"
+                data-hotkey="ctrl+s, cmd+s"
+                class="btn btn-primary">
+                <?= e(trans('backend::lang.form.save')) ?>
+            </button>
+            <span style="margin-left:10px;"><small><?= e(trans('indikator.qedit::lang.widget.modify')) ?>: <strong id="QeditDate"><?= e(trans('indikator.qedit::lang.widget.nodate')) ?></strong></small></span>
+        </p>
+    </form>
+</div>
+<script type="text/javascript">
+function QeditPage(path)
+{
+    $.post('<?= Backend::url('indikator/qedit/content') ?>?page=' + path.value + '&theme=<?= $theme ?>', function(data, status) {
+        if ($('.field-richeditor').length == 0) $('#QeditTextarea').val(data);
+        else $('#QeditTextarea').redactor('code.set', data);
+    });
+
+    $.post('<?= Backend::url('indikator/qedit/date') ?>?page=' + path.value + '&theme=<?= $theme ?>', function(data, status) {
+        $('#QeditDate').html(data);
+    });
+}
+</script>
