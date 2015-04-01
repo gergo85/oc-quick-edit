@@ -16,10 +16,11 @@ This plugin added a quick edit widget for content of CMS pages.
 1. Click on the __Add widget__ button.
 1. Select the widget from the list.
 
-###Roadmap
+###Plans
+* Support CMS contents.
 * Support code editor.
 * Support wysiwyg editors.
-* Support change theme.
+* Support themes.
 
 ###Credits
 * Plugin icon: [Web App icons](http://icons8.com/web-app/new-icons/all)
