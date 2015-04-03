@@ -6,6 +6,8 @@ use Cms\Classes\Page;
 use Flash;
 use Lang;
 use Cms\Classes\Theme;
+use Cms\Widgets\TemplateList;
+use Cms\Classes\Content;
 
 class Qedit extends ReportWidgetBase
 {
@@ -37,6 +39,12 @@ class Qedit extends ReportWidgetBase
                 'validationPattern' => '^.+$',
                 'validationMessage' => 'backend::lang.dashboard.widget_title_error'
             ],
+            'type' => [
+                'title'             => 'indikator.qedit::lang.widget.type',
+                'default'           => 'pages',
+                'type'              => 'dropdown',
+                'options'           => ['pages' => Lang::get('indikator.qedit::lang.widget.type_page'), 'content' => Lang::get('indikator.qedit::lang.widget.type_content')]
+            ],
             'editor' => [
                 'title'             => 'indikator.qedit::lang.widget.editor',
                 'default'           => 'rich',
@@ -55,15 +63,18 @@ class Qedit extends ReportWidgetBase
 
     protected function loadData()
     {
-        $pages = Page::getNameList();
-        $this->vars['pages'] = '';
-
-        foreach ($pages as $path => $name)
-        {
-             $this->vars['pages'] .= '<option value="'.$path.'">'.$name.'</option>';
-        }
-
+        $this->vars['items'] = '';
         $this->vars['theme'] = Theme::getEditTheme()->getDirName();
+
+        if ($this->property('type') == 'pages')
+        {
+            $items = Page::getNameList();
+
+            foreach ($items as $path => $name)
+            {
+                 $this->vars['items'] .= '<option value="'.$path.'.htm">'.$name.'</option>';
+            }
+        }
     }
 
     public function onQeditSave()
@@ -73,11 +84,20 @@ class Qedit extends ReportWidgetBase
         if (!empty($page))
         {
             $theme = Theme::getEditTheme()->getDirName();
+            $type = $this->property('type');
 
-            $original = file_get_contents('themes/'.$theme.'/pages/'.$page.'.htm');
-            $setting = substr($original, 0, strrpos($original, '==') + 2)."\n";
+            if ($type == 'pages')
+            {
+                $original = file_get_contents('themes/'.$theme.'/pages/'.$page);
+                $setting = substr($original, 0, strrpos($original, '==') + 2)."\n";
+                $content = $setting.post('content');
+            }
+            else
+            {
+                $content = post('content');
+            }
 
-            file_put_contents('themes/'.$theme.'/pages/'.$page.'.htm', $setting.post('content'));
+            file_put_contents('themes/'.$theme.'/'.$type.'/'.$page, $content);
             Flash::success(Lang::get('cms::lang.template.saved'));
         }
 

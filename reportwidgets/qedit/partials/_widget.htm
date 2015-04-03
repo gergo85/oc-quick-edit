@@ -1,14 +1,41 @@
+<?php
+
+function cms_contents($path = 'themes/demo/content', $theme, &$files = '')
+{
+    if (!is_dir($path)) return '';
+
+    $opendir = opendir($path);
+    $folder = str_replace('themes/'.$theme.'/content', '', $path).'/';
+
+    while ($file = readdir($opendir))
+    {
+        if (is_file($sub = $path.'/'.$file))
+        {
+            $files .= '<option value="'.$folder.$file.'">'.substr($file, 0, strrpos($file, '.')).'</option>';
+        }
+        else if($file != '.' && $file != '..')
+        {
+            cms_contents($sub, $theme, $files);
+        }
+    }
+
+    return($files);
+}
+
+if ($this->property('type') == 'content') $items = cms_contents('themes/'.$theme.'/content', $theme);
+
+?>
 <div class="report-widget">
     <h3 style="margin-bottom:25px;"><?= e(trans($this->property('title'))) ?></h3>
     <form>
         <p>
             <select name="page" id="QeditSelect" onchange="QeditPage(this);" class="form-control custom-select" style="width:100%;">
                 <option value=""><?= e(trans('indikator.qedit::lang.widget.select')) ?></option>
-                <?= $pages ?>
+                <?= $items ?>
             </select>
         </p>
         <p>
-            <div<?php if ($this->property('editor') == 'rich') echo ' class="field-richeditor" data-control="richeditor"'; ?> style="height:<?= $this->property('height') ?>px;overflow:scroll;">
+            <div<?php if ($this->property('editor') == 'rich') echo ' class="field-richeditor" data-control="richeditor" style="height:'.$this->property('height').'px;"'; ?>>
                 <textarea name="content" id="QeditTextarea"<?php if ($this->property('editor') == 'none') echo ' style="height:'.$this->property('height').'px;width:100%;"'; ?>></textarea>
             </div>
         </p>
@@ -27,12 +54,12 @@
 <script type="text/javascript">
 function QeditPage(path)
 {
-    $.post('<?= Backend::url('indikator/qedit/content') ?>?page=' + path.value + '&theme=<?= $theme ?>', function(data, status) {
+    $.post('<?= Backend::url('indikator/qedit/content') ?>?theme=<?= $theme ?>&type=<?= $this->property('type') ?>&page=' + path.value, function(data, status) {
         if ($('.field-richeditor').length == 0) $('#QeditTextarea').val(data);
         else $('#QeditTextarea').redactor('code.set', data);
     });
 
-    $.post('<?= Backend::url('indikator/qedit/date') ?>?page=' + path.value + '&theme=<?= $theme ?>', function(data, status) {
+    $.post('<?= Backend::url('indikator/qedit/date') ?>?theme=<?= $theme ?>&type=<?= $this->property('type') ?>&page=' + path.value, function(data, status) {
         $('#QeditDate').html(data);
     });
 }

@@ -7,6 +7,9 @@ return [
         'author' => 'Gergő Szabó'
     ],
     'widget' => [
+        'type' => 'CMS-Typ',
+        'type_page' => 'Seite',
+        'type_content' => 'Inhalt',
         'editor' => 'Art der Editor',
         'editor_none' => 'Keiner',
         'editor_rich' => 'Word-Editor',

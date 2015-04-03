@@ -7,6 +7,9 @@ return [
         'author' => 'Szabó Gergő'
     ],
     'widget' => [
+        'type' => 'Típus',
+        'type_page' => 'Oldal',
+        'type_content' => 'Tartalom',
         'editor' => 'Szerkesztő típusa',
         'editor_none' => 'Nincs',
         'editor_rich' => 'Word-szerű',

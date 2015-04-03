@@ -4,9 +4,9 @@ App::before(function($request)
 {
     Route::group(['prefix' => Config::get('cms.backendUri', 'backend')], function() {
         Route::any('indikator/qedit/content', function() {
-            if (File::exists('themes/'.get('theme').'/pages/'.get('page').'.htm'))
+            if (File::exists('themes/'.get('theme').'/'.get('type').'/'.get('page')))
             {
-                $content = file_get_contents('themes/'.get('theme').'/pages/'.get('page').'.htm');
+                $content = file_get_contents('themes/'.get('theme').'/'.get('type').'/'.get('page'));
                 return trim(substr($content, strrpos($content, '==') + 2));
             }
             else
@@ -16,9 +16,9 @@ App::before(function($request)
         });
 
         Route::any('indikator/qedit/date', function() {
-            if (File::exists('themes/'.get('theme').'/pages/'.get('page').'.htm'))
+            if (File::exists('themes/'.get('theme').'/'.get('type').'/'.get('page')))
             {
-                return date('Y-m-d H:i', filemtime('themes/'.get('theme').'/pages/'.get('page').'.htm'));
+                return date('Y-m-d H:i', filemtime('themes/'.get('theme').'/'.get('type').'/'.get('page')));
             }
             else
             {

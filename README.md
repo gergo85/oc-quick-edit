@@ -17,10 +17,9 @@ This plugin added a quick edit widget for content of CMS pages.
 1. Select the widget from the list.
 
 ###Plans
-* Support CMS contents.
+* Support themes.
 * Support code editor.
 * Support wysiwyg editors.
-* Support themes.
 
 ###Credits
 * Plugin icon: [Web App icons](http://icons8.com/web-app/new-icons/all)
