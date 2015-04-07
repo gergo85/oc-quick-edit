@@ -7,7 +7,8 @@ App::before(function($request)
             if (File::exists('themes/'.get('theme').'/'.get('type').'/'.get('page')))
             {
                 $content = file_get_contents('themes/'.get('theme').'/'.get('type').'/'.get('page'));
-                return trim(substr($content, strrpos($content, '==') + 2));
+                if (get('type') == 'pages') $content = substr($content, strrpos($content, '==') + 2);
+                return trim($content);
             }
             else
             {
