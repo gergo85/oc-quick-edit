@@ -1,6 +1,12 @@
 ##Quick Edit plugin for OctoberCMS
 This plugin added a quick edit widget for content of CMS pages.
 
+###Main features
+* Edit CMS pages.
+* Edit CMS contents.
+* Show last modified date.
+* Works with all themes.
+
 ###Available languages
 * en - English
 * de - Deutsch
@@ -8,8 +14,8 @@ This plugin added a quick edit widget for content of CMS pages.
 
 ###Installation
 1. Go to the __Settings -> Updates__ page in Backend.
-1. Type the __Indikator.Qedit__ in search field.
-1. Click on the __Install Plugin__ button.
+1. Click on the __Install Plugins__ button.
+1. Type the __Quick Edit__ in search field.
 
 ###Add widget
 1. Go to the __Dashboard__ page in Backend.
@@ -17,9 +23,8 @@ This plugin added a quick edit widget for content of CMS pages.
 1. Select the widget from the list.
 
 ###Plans
-* Support themes.
-* Support code editor.
-* Support wysiwyg editors.
+* Support default code editor.
+* Support different wysiwyg editors.
 
 ###Credits
 * Plugin icon: [Web App icons](http://icons8.com/web-app/new-icons/all)

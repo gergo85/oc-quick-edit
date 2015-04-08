@@ -2,12 +2,9 @@
 
 use Backend\Classes\ReportWidgetBase;
 use Exception;
-use Cms\Classes\Page;
 use Flash;
 use Lang;
 use Cms\Classes\Theme;
-use Cms\Widgets\TemplateList;
-use Cms\Classes\Content;
 
 class Qedit extends ReportWidgetBase
 {
@@ -63,17 +60,19 @@ class Qedit extends ReportWidgetBase
 
     protected function loadData()
     {
-        $this->vars['items'] = '';
         $this->vars['theme'] = Theme::getEditTheme()->getDirName();
+        $this->vars['themes'] = array();
 
-        if ($this->property('type') == 'pages')
+        if ($handle = opendir('themes'))
         {
-            $items = Page::getNameList();
-
-            foreach ($items as $path => $name)
+            while (false !== ($item = readdir($handle)))
             {
-                 $this->vars['items'] .= '<option value="'.$path.'.htm">'.$name.'</option>';
+                if ($item != '.' && $item != '..')
+                {
+                    $this->vars['themes'][] = $item;
+                }
             }
+            closedir($handle);
         }
     }
 
@@ -88,7 +87,7 @@ class Qedit extends ReportWidgetBase
 
             if ($type == 'pages')
             {
-                $original = file_get_contents('themes/'.$theme.'/pages/'.$page);
+                $original = file_get_contents('themes/'.$page);
                 $setting = substr($original, 0, strrpos($original, '==') + 2)."\n";
                 $content = $setting.post('content');
             }
@@ -97,7 +96,7 @@ class Qedit extends ReportWidgetBase
                 $content = post('content');
             }
 
-            file_put_contents('themes/'.$theme.'/'.$type.'/'.$page, $content);
+            file_put_contents('themes/'.$page, $content);
             Flash::success(Lang::get('cms::lang.template.saved'));
         }
 

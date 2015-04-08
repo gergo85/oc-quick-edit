@@ -1,28 +1,42 @@
 <?php
 
-function cms_contents($path = 'themes/demo/content', $theme, &$files = '')
+function listFiles($path = '', &$files = '')
 {
-    if (!is_dir($path)) return '';
-
-    $opendir = opendir($path);
-    $folder = str_replace('themes/'.$theme.'/content', '', $path).'/';
+    $path = str_replace('themes/', '', $path);
+    $opendir = opendir('themes/'.$path);
 
     while ($file = readdir($opendir))
     {
-        if (is_file($sub = $path.'/'.$file))
+        if (is_file($sub = 'themes/'.$path.'/'.$file))
         {
-            $files .= '<option value="'.$folder.$file.'">'.substr($file, 0, strrpos($file, '.')).'</option>';
+            $files .= '<option value="'.$path.'/'.$file.'">'.substr($file, 0, strrpos($file, '.')).'</option>';
         }
-        else if($file != '.' && $file != '..')
+
+        else if ($file != '.' && $file != '..')
         {
-            cms_contents($sub, $theme, $files);
+            listFiles($sub, $files);
         }
     }
 
-    return($files);
+    return $files;
 }
 
-if ($this->property('type') == 'content') $items = cms_contents('themes/'.$theme.'/content', $theme);
+if (count($themes) == 1)
+{
+    $items = listFiles($theme.'/'.$this->property('type'));
+}
+
+else
+{
+    $items = '';
+
+    foreach ($themes as $name)
+    {
+        $items .= '<optgroup label="'.$name.'">';
+        $items .= listFiles($name.'/'.$this->property('type'));
+        $items .= '</optgroup>';
+    }
+}
 
 ?>
 <div class="report-widget">
@@ -54,12 +68,12 @@ if ($this->property('type') == 'content') $items = cms_contents('themes/'.$theme
 <script type="text/javascript">
 function QeditPage(path)
 {
-    $.post('<?= Backend::url('indikator/qedit/content') ?>?theme=<?= $theme ?>&type=<?= $this->property('type') ?>&page=' + path.value, function(data, status) {
+    $.post('<?= Backend::url('indikator/qedit/content') ?>?path=' + path.value, function(data, status) {
         if ($('.field-richeditor').length == 0) $('#QeditTextarea').val(data);
         else $('#QeditTextarea').redactor('code.set', data);
     });
 
-    $.post('<?= Backend::url('indikator/qedit/date') ?>?theme=<?= $theme ?>&type=<?= $this->property('type') ?>&page=' + path.value, function(data, status) {
+    $.post('<?= Backend::url('indikator/qedit/date') ?>?path=' + path.value, function(data, status) {
         $('#QeditDate').html(data);
     });
 }
