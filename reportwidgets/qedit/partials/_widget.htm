@@ -2,8 +2,10 @@
 
 function listFiles($path = '', &$files = '')
 {
+    if (!is_dir($path)) return $files;
+
+    $opendir = opendir($path);
     $path = str_replace('themes/', '', $path);
-    $opendir = opendir('themes/'.$path);
 
     while ($file = readdir($opendir))
     {
@@ -23,7 +25,7 @@ function listFiles($path = '', &$files = '')
 
 if (count($themes) == 1)
 {
-    $items = listFiles($theme.'/'.$this->property('type'));
+    $items = listFiles('themes/'.$theme.'/'.$this->property('type'));
 }
 
 else
@@ -33,7 +35,7 @@ else
     foreach ($themes as $name)
     {
         $items .= '<optgroup label="'.$name.'">';
-        $items .= listFiles($name.'/'.$this->property('type'));
+        $items .= listFiles('themes/'.$name.'/'.$this->property('type'));
         $items .= '</optgroup>';
     }
 }
