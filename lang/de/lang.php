@@ -14,6 +14,7 @@ return [
         'editor_none' => 'Keiner',
         'editor_rich' => 'Word-Editor',
         'height' => 'Höhe (in Pixel)',
+        'description' => 'Es ist nicht in Rich-Editor zu arbeiten.',
         'error_number' => 'Das Feld kann nur Zahlen.',
         'error_page' => 'Bitte wählen Sie Seite zu bearbeiten.',
         'select' => '-- wählen --',

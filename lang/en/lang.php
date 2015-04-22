@@ -14,6 +14,7 @@ return [
         'editor_none' => 'None',
         'editor_rich' => 'Rich editor',
         'height' => 'Height (in pixel)',
+        'description' => 'It doesn\'t work in Rich editor.',
         'error_number' => 'The field can only contain numbers.',
         'error_page' => 'Please select page to edit.',
         'select' => '-- select --',

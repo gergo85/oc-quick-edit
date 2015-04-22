@@ -14,6 +14,7 @@ return [
         'editor_none' => 'Nincs',
         'editor_rich' => 'Word-szerű',
         'height' => 'Magasság (pixelben)',
+        'description' => 'A Word-szerű szerkesztőnél nem működik.',
         'error_number' => 'A mező csak számokat tartalmazhat.',
         'error_page' => 'Válasszon ki egy oldalt a szerkesztéshez.',
         'select' => '-- válasszon --',

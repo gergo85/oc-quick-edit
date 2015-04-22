@@ -50,6 +50,7 @@ class Qedit extends ReportWidgetBase
             ],
             'height' => [
                 'title'             => 'indikator.qedit::lang.widget.height',
+                'description'       => 'indikator.qedit::lang.widget.description',
                 'default'           => '300',
                 'type'              => 'string',
                 'validationPattern' => '^[0-9]*$',
