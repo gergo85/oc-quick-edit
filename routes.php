@@ -7,7 +7,7 @@ App::before(function($request)
             if (File::exists('themes/'.get('path')))
             {
                 $content = file_get_contents('themes/'.get('path'));
-                if (substr_count(get('path'), '/pages/') == 1) $content = substr($content, strrpos($content, '==') + 2);
+                if (substr_count(get('path'), '/content/') == 0) $content = substr($content, strrpos($content, '==') + 2);
                 return trim($content);
             }
 
@@ -20,7 +20,7 @@ App::before(function($request)
         Route::any('indikator/qedit/date', function() {
             if (File::exists('themes/'.get('path')))
             {
-                return date('Y-m-d H:i', filemtime('themes/'.get('path')));
+                return date('Y-m-d G:i', filemtime('themes/'.get('path')));
             }
 
             else

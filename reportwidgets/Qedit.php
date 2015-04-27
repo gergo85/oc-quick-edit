@@ -40,7 +40,7 @@ class Qedit extends ReportWidgetBase
                 'title'             => 'indikator.qedit::lang.widget.type',
                 'default'           => 'pages',
                 'type'              => 'dropdown',
-                'options'           => ['pages' => Lang::get('indikator.qedit::lang.widget.type_page'), 'content' => Lang::get('indikator.qedit::lang.widget.type_content')]
+                'options'           => ['pages' => Lang::get('indikator.qedit::lang.widget.type_page'), 'content' => Lang::get('indikator.qedit::lang.widget.type_content'), 'partials' => Lang::get('indikator.qedit::lang.widget.type_partials'), 'layouts' => Lang::get('indikator.qedit::lang.widget.type_layouts')]
             ],
             'editor' => [
                 'title'             => 'indikator.qedit::lang.widget.editor',
@@ -49,12 +49,19 @@ class Qedit extends ReportWidgetBase
                 'options'           => ['none' => Lang::get('indikator.qedit::lang.widget.editor_none'), 'rich' => Lang::get('indikator.qedit::lang.widget.editor_rich')]
             ],
             'height' => [
-                'title'             => 'indikator.qedit::lang.widget.height',
-                'description'       => 'indikator.qedit::lang.widget.description',
+                'title'             => 'indikator.qedit::lang.widget.height_title',
+                'description'       => 'indikator.qedit::lang.widget.height_description',
                 'default'           => '300',
                 'type'              => 'string',
                 'validationPattern' => '^[0-9]*$',
                 'validationMessage' => 'indikator.qedit::lang.widget.error_number'
+            ],
+            'size' => [
+                'title'             => 'indikator.qedit::lang.widget.size_title',
+                'description'       => 'indikator.qedit::lang.widget.size_description',
+                'default'           => 'huge',
+                'type'              => 'dropdown',
+                'options'           => ['large' => Lang::get('indikator.qedit::lang.widget.size_large'), 'huge' => Lang::get('indikator.qedit::lang.widget.size_huge'), 'giant' => Lang::get('indikator.qedit::lang.widget.size_giant')]
             ]
         ];
     }
@@ -86,7 +93,7 @@ class Qedit extends ReportWidgetBase
             $theme = Theme::getEditTheme()->getDirName();
             $type = $this->property('type');
 
-            if ($type == 'pages')
+            if ($type != 'content')
             {
                 $original = file_get_contents('themes/'.$page);
                 $setting = substr($original, 0, strrpos($original, '==') + 2)."\n";

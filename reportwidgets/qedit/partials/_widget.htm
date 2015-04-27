@@ -51,7 +51,7 @@ else
             </select>
         </p>
         <p>
-            <div<?php if ($this->property('editor') == 'rich') echo ' class="field-richeditor size-huge" data-control="richeditor"'; ?>>
+            <div<?php if ($this->property('editor') == 'rich') echo ' class="field-richeditor size-'.$this->property('size').'" data-control="richeditor"'; ?>>
                 <textarea name="content" id="QeditTextarea"<?php if ($this->property('editor') == 'none') echo ' style="height:'.$this->property('height').'px;width:100%;"'; ?>></textarea>
             </div>
         </p>

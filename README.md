@@ -4,6 +4,8 @@ This plugin added a quick edit widget for content of CMS pages.
 ###Main features
 * Edit CMS pages.
 * Edit CMS contents.
+* Edit CMS partials.
+* Edit CMS layouts.
 * Show last modified date.
 * Works with all themes.
 
