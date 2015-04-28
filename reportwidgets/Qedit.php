@@ -4,6 +4,7 @@ use Backend\Classes\ReportWidgetBase;
 use Exception;
 use Flash;
 use Lang;
+use File;
 use Cms\Classes\Theme;
 
 class Qedit extends ReportWidgetBase
@@ -95,7 +96,7 @@ class Qedit extends ReportWidgetBase
 
             if ($type != 'content')
             {
-                $original = file_get_contents('themes/'.$page);
+                $original = File::get('themes/'.$page);
                 $setting = substr($original, 0, strrpos($original, '==') + 2)."\n";
                 $content = $setting.post('content');
             }
