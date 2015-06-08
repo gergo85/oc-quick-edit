@@ -1,26 +1,32 @@
 <?php
 
-function listFiles($path = '', &$files = '')
+if (!function_exists('listFiles'))
 {
-    if (!is_dir($path)) return $files;
-
-    $opendir = opendir($path);
-    $path = str_replace('themes/', '', $path);
-
-    while ($file = readdir($opendir))
+    function listFiles($path = '', &$files = '')
     {
-        if (is_file($sub = 'themes/'.$path.'/'.$file))
+        if (!is_dir($path))
         {
-            $files .= '<option value="'.$path.'/'.$file.'">'.substr($file, 0, strrpos($file, '.')).'</option>';
+            return $files;
         }
 
-        else if ($file != '.' && $file != '..')
+        $opendir = opendir($path);
+        $path = str_replace('themes/', '', $path);
+
+        while ($file = readdir($opendir))
         {
-            listFiles($sub, $files);
+            if (is_file($sub = 'themes/'.$path.'/'.$file))
+            {
+                $files .= '<option value="'.$path.'/'.$file.'">'.substr($file, 0, strrpos($file, '.')).'</option>';
+            }
+
+            else if ($file != '.' && $file != '..')
+            {
+                listFiles($sub, $files);
+            }
         }
+
+        return $files;
     }
-
-    return $files;
 }
 
 if (count($themes) == 1)
