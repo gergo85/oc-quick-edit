@@ -10,6 +10,7 @@ class Plugin extends PluginBase
             'name'        => 'indikator.qedit::lang.plugin.name',
             'description' => 'indikator.qedit::lang.plugin.description',
             'author'      => 'indikator.qedit::lang.plugin.author',
+            'icon'        => 'icon-pencil',
             'homepage'    => 'https://github.com/gergo85/oc-quick-edit'
         ];
     }

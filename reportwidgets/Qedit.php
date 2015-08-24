@@ -18,8 +18,7 @@ class Qedit extends ReportWidgetBase
             $this->vars['error'] = $ex->getMessage();
         }
 
-        if ($this->property('editor') == 'rich')
-        {
+        if ($this->property('editor') == 'rich') {
             $this->addCss('/modules/backend/formwidgets/richeditor/assets/css/richeditor.css');
             $this->addJs('/modules/backend/formwidgets/richeditor/assets/js/build-min.js');
         }
@@ -72,15 +71,13 @@ class Qedit extends ReportWidgetBase
         $this->vars['theme'] = Theme::getEditTheme()->getDirName();
         $this->vars['themes'] = [];
 
-        if ($handle = opendir('themes'))
-        {
-            while (false !== ($item = readdir($handle)))
-            {
-                if ($item != '.' && $item != '..')
-                {
+        if ($handle = opendir('themes')) {
+            while (false !== ($item = readdir($handle))) {
+                if ($item != '.' && $item != '..') {
                     $this->vars['themes'][] = $item;
                 }
             }
+
             closedir($handle);
         }
     }
@@ -89,23 +86,22 @@ class Qedit extends ReportWidgetBase
     {
         $page = post('page');
 
-        if (!empty($page))
-        {
+        if (!empty($page)) {
             $theme = Theme::getEditTheme()->getDirName();
             $type = $this->property('type');
 
-            if ($type != 'content')
-            {
+            if ($type != 'content') {
                 $original = File::get('themes/'.$page);
                 $setting = substr($original, 0, strrpos($original, '==') + 2)."\n";
                 $content = $setting.post('content');
             }
-            else
-            {
+
+            else {
                 $content = post('content');
             }
 
             file_put_contents('themes/'.$page, $content);
+
             Flash::success(Lang::get('cms::lang.template.saved'));
         }
 
