@@ -83,6 +83,17 @@ class Qedit extends ReportWidgetBase
             }
             closedir($handle);
         }
+/*
+        $this->vars['theme'] = Theme::getEditTheme()->getDirName();
+
+        while (false !== ($item = File::directories('themes')))
+        {
+            if ($item != '.' && $item != '..')
+            {
+                $this->vars['themes'][] = $item;
+            }
+        }
+*/
     }
 
     public function onQeditSave()
