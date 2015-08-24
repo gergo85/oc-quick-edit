@@ -70,7 +70,7 @@ class Qedit extends ReportWidgetBase
     protected function loadData()
     {
         $this->vars['theme'] = Theme::getEditTheme()->getDirName();
-        $this->vars['themes'] = array();
+        $this->vars['themes'] = [];
 
         if ($handle = opendir('themes'))
         {
@@ -83,17 +83,6 @@ class Qedit extends ReportWidgetBase
             }
             closedir($handle);
         }
-/*
-        $this->vars['theme'] = Theme::getEditTheme()->getDirName();
-
-        while (false !== ($item = File::directories('themes')))
-        {
-            if ($item != '.' && $item != '..')
-            {
-                $this->vars['themes'][] = $item;
-            }
-        }
-*/
     }
 
     public function onQeditSave()
