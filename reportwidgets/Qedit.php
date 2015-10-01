@@ -105,8 +105,7 @@ class Qedit extends ReportWidgetBase
             Flash::success(Lang::get('cms::lang.template.saved'));
         }
 
-        else
-        {
+        else {
             Flash::warning(Lang::get('indikator.qedit::lang.widget.error_page'));
         }
     }
