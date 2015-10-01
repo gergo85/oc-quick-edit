@@ -1,5 +1,5 @@
 ##Quick Edit plugin for OctoberCMS
-This plugin added a quick edit widget for content of CMS pages.
+Edit easily and effectively CMS pages, contents, partials and layouts via dashboard widget.
 
 ###Main features
 * Edit CMS pages.
