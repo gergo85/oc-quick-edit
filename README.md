@@ -15,7 +15,7 @@ Edit easily and effectively CMS pages, contents, partials and layouts via dashbo
 * hu - Magyar
 
 ###Installation
-1. Go to the __Settings -> Updates__ page in Backend.
+1. Go to the __Settings > Updates__ page in Backend.
 1. Click on the __Install Plugins__ button.
 1. Type the __Quick Edit__ in search field.
 
