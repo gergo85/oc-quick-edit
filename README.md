@@ -1,4 +1,4 @@
-##Quick Edit plugin for OctoberCMS
+##Quick Edit plugin
 Edit easily and effectively CMS pages, contents, partials and layouts via dashboard widget.
 
 ###Main features
@@ -25,5 +25,5 @@ Edit easily and effectively CMS pages, contents, partials and layouts via dashbo
 1. __Select__ the widget from the list.
 
 ###Plans
-* Support default code editor.
-* Support different wysiwyg editors.
+* Support the code editor.
+* Support the Static Pages plugin.
