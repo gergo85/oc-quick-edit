@@ -25,5 +25,5 @@ Edit easily and effectively CMS pages, contents, partials and layouts via dashbo
 1. __Select__ the widget from the list.
 
 ###Plans
-* Support the code editor.
+* Support the default code editor.
 * Support the Static Pages plugin.
