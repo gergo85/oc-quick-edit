@@ -9,8 +9,8 @@ App::before(function($request)
             if (File::exists('themes/'.get('path'))) {
                 $content = File::get('themes/'.get('path'));
 
-                if (substr_count(get('path'), '/content/') == 0) {
-                    $content = substr($content, strrpos($content, '==') + 2);
+                if (substr_count(get('path'), '/layouts/') > 0 || substr_count(get('path'), '/pages/') > 0 || substr_count(get('path'), '/static-pages/') > 0) {
+                    $content = substr($content, strpos($content, '==') + 2);
                 }
 
                 return trim($content);

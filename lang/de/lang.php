@@ -10,6 +10,7 @@ return [
         'type' => 'CMS-Typ',
         'type_page' => 'Seite',
         'type_content' => 'Inhalt',
+        'type_static_pages' => 'Seiten',
         'type_partials' => 'Teiltöne',
         'type_layouts' => 'Layouts',
         'editor' => 'Art der Editor',

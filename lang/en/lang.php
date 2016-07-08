@@ -7,9 +7,10 @@ return [
         'author' => 'Gergő Szabó'
     ],
     'widget' => [
-        'type' => 'CMS type',
-        'type_page' => 'Page',
+        'type' => 'Type',
+        'type_page' => 'Pages',
         'type_content' => 'Content',
+        'type_static_pages' => 'Static Pages',
         'type_partials' => 'Partials',
         'type_layouts' => 'Layouts',
         'editor' => 'Type of editor',

@@ -41,10 +41,11 @@ class Qedit extends ReportWidgetBase
                 'default'           => 'pages',
                 'type'              => 'dropdown',
                 'options'           => [
-                    'pages'    => Lang::get('indikator.qedit::lang.widget.type_page'),
-                    'content'  => Lang::get('indikator.qedit::lang.widget.type_content'),
-                    'partials' => Lang::get('indikator.qedit::lang.widget.type_partials'),
-                    'layouts'  => Lang::get('indikator.qedit::lang.widget.type_layouts')
+                    'pages'        => Lang::get('indikator.qedit::lang.widget.type_page'),
+                    'content'      => Lang::get('indikator.qedit::lang.widget.type_content'),
+                    'static_pages' => Lang::get('indikator.qedit::lang.widget.type_static_pages'),
+                    'partials'     => Lang::get('indikator.qedit::lang.widget.type_partials'),
+                    'layouts'      => Lang::get('indikator.qedit::lang.widget.type_layouts')
                 ]
             ],
             'editor' => [
@@ -102,9 +103,9 @@ class Qedit extends ReportWidgetBase
             $theme = Theme::getEditTheme()->getDirName();
             $type = $this->property('type');
 
-            if ($type != 'content') {
+            if ($type == 'layouts' || $type == 'pages' || $type == 'static_pages') {
                 $original = File::get('themes/'.$page);
-                $setting = substr($original, 0, strrpos($original, '==') + 2)."\n";
+                $setting = substr($original, 0, strpos($original, '==') + 2)."\n";
                 $content = $setting.post('content');
             }
 

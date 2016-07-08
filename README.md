@@ -1,11 +1,12 @@
 ##Quick Edit plugin
-Edit easily and effectively CMS pages, contents, partials and layouts via dashboard widget.
+Edit easily and effectively CMS pages, contents, partials, layouts and Static Pages files via dashboard widget.
 
 ###Main features
 * Edit CMS pages.
 * Edit CMS contents.
 * Edit CMS partials.
 * Edit CMS layouts.
+* Edit Static Pages files.
 * Show last modified date.
 * Works with all themes.
 
@@ -26,4 +27,4 @@ Edit easily and effectively CMS pages, contents, partials and layouts via dashbo
 
 ###Plans
 * Support the default code editor.
-* Support the Static Pages plugin.
+* Support the further plugins.

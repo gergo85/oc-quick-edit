@@ -1,7 +1,18 @@
 <?php
 
 if (!function_exists('listFiles')) {
-    function listFiles($path = '', &$files = '') {
+    function listFiles($path = '', $type = '', &$files = '') {
+        if ($type == 'static_pages') {
+            $path = str_replace('$', 'content/static-pages', $path);
+        }
+        else {
+            if ($type == 'content' && substr_count($path, 'static-pages') > 0) {
+                return $files;
+            }
+
+            $path = str_replace('$', $type, $path);
+        }
+
         if (!File::isDirectory($path)) {
             return $files;
         }
@@ -15,7 +26,7 @@ if (!function_exists('listFiles')) {
                 }
 
                 else if ($file != '.' && $file != '..') {
-                    listFiles($sub, $files);
+                    listFiles($sub, $type, $files);
                 }
             }
 
@@ -27,14 +38,14 @@ if (!function_exists('listFiles')) {
 }
 
 if (count($themes) == 1) {
-    $items = listFiles('themes/'.$theme.'/'.$this->property('type'));
+    $items = listFiles('themes/'.$theme.'/$', $this->property('type'));
 }
 
 else {
     $items = '';
 
     foreach ($themes as $name) {
-        $items .= '<optgroup label="'.$name.'">'.listFiles('themes/'.$name.'/'.$this->property('type')).'</optgroup>';
+        $items .= '<optgroup label="'.$name.'">'.listFiles('themes/'.$name.'/$', $this->property('type')).'</optgroup>';
     }
 }
 
