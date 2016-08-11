@@ -104,7 +104,7 @@ class Qedit extends ReportWidgetBase
             $type = $this->property('type');
 
             if ($type == 'layouts' || $type == 'pages' || $type == 'static_pages') {
-                $original = File::get('themes/'.$page);
+                $original = File::get(base_path().'/themes/'.$page);
                 $setting = substr($original, 0, strpos($original, '==') + 2)."\n";
                 $content = $setting.post('content');
             }

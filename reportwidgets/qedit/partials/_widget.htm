@@ -13,15 +13,15 @@ if (!function_exists('listFiles')) {
             $path = str_replace('$', $type, $path);
         }
 
-        if (!File::isDirectory($path)) {
+        if (!File::isDirectory(base_path().'/'.$path)) {
             return $files;
         }
 
-        if ($folder = opendir($path)) {
+        if ($folder = opendir(base_path().'/'.$path)) {
             $path = str_replace('themes/', '', $path);
 
             while ($file = readdir($folder)) {
-                if (File::isFile($sub = 'themes/'.$path.'/'.$file)) {
+                if (File::isFile($sub = base_path().'/themes/'.$path.'/'.$file)) {
                     $files .= '<option value="'.$path.'/'.$file.'">'.substr($file, 0, strrpos($file, '.')).'</option>';
                 }
 
