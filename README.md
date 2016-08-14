@@ -24,7 +24,3 @@ Edit easily and effectively CMS pages, contents, partials, layouts and Static Pa
 1. Go to the __Dashboard__ page in the Backend.
 1. Click on the __Manage widgets > Add widget__ button.
 1. Select the __Quick Edit widget__ from the list.
-
-###Plans
-* Support the default code editor.
-* Support the further plugins.

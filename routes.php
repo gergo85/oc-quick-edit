@@ -10,7 +10,12 @@ App::before(function($request)
                 $content = File::get(base_path().'/themes/'.get('path'));
 
                 if (substr_count(get('path'), '/layouts/') > 0 || substr_count(get('path'), '/pages/') > 0 || substr_count(get('path'), '/static-pages/') > 0) {
-                    $content = substr($content, strpos($content, '==') + 2);
+                    if (substr_count($content, '<?php') == 0) {
+                        $content = substr($content, strpos($content, '==') + 2);
+                    }
+                    else {
+                        $content = substr($content, strpos($content, '?>') + 5);
+                    }
                 }
 
                 return trim($content);

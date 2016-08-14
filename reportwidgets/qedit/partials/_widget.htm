@@ -62,7 +62,7 @@ else {
             </select>
         </p>
         <p>
-            <div<?php if ($this->property('editor') == 'rich') echo ' class="field-richeditor size-'.$this->property('size').'" data-control="richeditor"'; ?>>
+            <div<?php if ($this->property('editor') == 'rich') echo ' class="field-richeditor size-'.$this->property('size').'" data-editor-lang="'.App::getLocale().'" data-control="richeditor"'; ?>>
                 <textarea name="content" class="qedit-textarea"<?php if ($this->property('editor') == 'none') echo ' style="height:'.$this->property('height').'px;width:100%;"'; ?>></textarea>
                 <?php if ($this->property('editor') == 'rich') echo '<div class="height-indicator"></div>'; ?>
             </div>
@@ -83,6 +83,7 @@ else {
     <p class="flash-message static warning"><?= e($error) ?></p>
 <?php endif ?>
 </div>
+
 <script type="text/javascript">
 function QeditPage(path) {
     /* Content */

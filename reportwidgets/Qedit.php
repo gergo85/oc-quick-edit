@@ -5,6 +5,7 @@ use Exception;
 use Flash;
 use Lang;
 use File;
+use App;
 use Cms\Classes\Theme;
 
 class Qedit extends ReportWidgetBase
@@ -21,6 +22,11 @@ class Qedit extends ReportWidgetBase
         if ($this->property('editor') == 'rich') {
             $this->addCss('/modules/backend/formwidgets/richeditor/assets/css/richeditor.css');
             $this->addJs('/modules/backend/formwidgets/richeditor/assets/js/build-min.js');
+            $this->addJs('/modules/backend/formwidgets/codeeditor/assets/js/build-min.js');
+
+            if ($lang = $this->getValidEditorLang()) {
+                $this->addJs('https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.3.4/js/languages/'.$lang.'.js');
+            }
         }
 
         return $this->makePartial('widget');
@@ -105,7 +111,14 @@ class Qedit extends ReportWidgetBase
 
             if ($type == 'layouts' || $type == 'pages' || $type == 'static_pages') {
                 $original = File::get(base_path().'/themes/'.$page);
-                $setting = substr($original, 0, strpos($original, '==') + 2)."\n";
+
+                if (substr_count($original, '<?php') == 0) {
+                    $setting = substr($original, 0, strpos($original, '==') + 2)."\n";
+                }
+                else {
+                    $setting = substr($original, 0, strpos($original, '?>') + 5)."\n";
+                }
+
                 $content = $setting.post('content');
             }
 
@@ -121,5 +134,19 @@ class Qedit extends ReportWidgetBase
         else {
             Flash::warning(Lang::get('indikator.qedit::lang.widget.error_page'));
         }
+    }
+
+    public function getValidEditorLang()
+    {
+        $locale = App::getLocale();
+
+        if ($locale == 'en') {
+            return null;
+        }
+
+        $locale = str_replace('-', '_', strtolower($locale));
+        $path = '/modules/backend/formwidgets/richeditor/assets/vendor/froala/js/languages/'.$locale.'.js';
+
+        return File::exists(base_path().$path) ? $locale : false;
     }
 }
