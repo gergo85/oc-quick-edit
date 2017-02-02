@@ -23,6 +23,8 @@ return [
         'size_large' => 'Groß',
         'size_huge' => 'Enorm',
         'size_giant' => 'Riesig',
+        'theme_title' => 'Das Standardthema anzeigen',
+        'theme_description' => 'Nur die Dateien des aktivierten Themas auflisten.',
         'error_number' => 'Das Feld kann nur Zahlen.',
         'error_page' => 'Bitte wählen Sie Seite zu bearbeiten.',
         'select' => '-- wählen --',

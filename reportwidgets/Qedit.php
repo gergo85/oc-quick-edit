@@ -81,6 +81,12 @@ class Qedit extends ReportWidgetBase
                     'huge'  => Lang::get('indikator.qedit::lang.widget.size_huge'),
                     'giant' => Lang::get('indikator.qedit::lang.widget.size_giant')
                 ]
+            ],
+            'theme' => [
+                'title'             => 'indikator.qedit::lang.widget.theme_title',
+                'description'       => 'indikator.qedit::lang.widget.theme_description',
+                'default'           => true,
+                'type'              => 'checkbox'
             ]
         ];
     }

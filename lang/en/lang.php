@@ -23,6 +23,8 @@ return [
         'size_large' => 'Large',
         'size_huge' => 'Huge',
         'size_giant' => 'Giant',
+        'theme_title' => 'Show the default theme',
+        'theme_description' => 'List only the files of activated theme.',
         'error_number' => 'The field can only contain numbers.',
         'error_page' => 'Please select page to edit.',
         'select' => '-- select --',

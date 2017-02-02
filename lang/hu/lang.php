@@ -23,6 +23,8 @@ return [
         'size_large' => 'Közepes',
         'size_huge' => 'Nagy',
         'size_giant' => 'Hatalmas',
+        'theme_title' => 'Alapértelmezett téma',
+        'theme_description' => 'Csak az aktív téma fájlai listázódnak.',
         'error_number' => 'A mező csak számokat tartalmazhat.',
         'error_page' => 'Válasszon ki egy oldalt a szerkesztéshez.',
         'select' => '-- válasszon --',

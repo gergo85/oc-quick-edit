@@ -37,7 +37,7 @@ if (!function_exists('listFiles')) {
     }
 }
 
-if (count($themes) == 1) {
+if (count($themes) == 1 || $this->property('theme')) {
     $items = listFiles('themes/'.$theme.'/$', $this->property('type'));
 }
 
