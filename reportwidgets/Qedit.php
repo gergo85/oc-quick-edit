@@ -43,10 +43,10 @@ class Qedit extends ReportWidgetBase
                 'validationMessage' => 'backend::lang.dashboard.widget_title_error'
             ],
             'type' => [
-                'title'             => 'indikator.qedit::lang.widget.type',
-                'default'           => 'pages',
-                'type'              => 'dropdown',
-                'options'           => [
+                'title'   => 'indikator.qedit::lang.widget.type',
+                'default' => 'pages',
+                'type'    => 'dropdown',
+                'options' => [
                     'pages'        => Lang::get('indikator.qedit::lang.widget.type_page'),
                     'content'      => Lang::get('indikator.qedit::lang.widget.type_content'),
                     'static_pages' => Lang::get('indikator.qedit::lang.widget.type_static_pages'),
@@ -55,10 +55,10 @@ class Qedit extends ReportWidgetBase
                 ]
             ],
             'editor' => [
-                'title'             => 'indikator.qedit::lang.widget.editor',
-                'default'           => 'rich',
-                'type'              => 'dropdown',
-                'options'           => [
+                'title'   => 'indikator.qedit::lang.widget.editor',
+                'default' => 'rich',
+                'type'    => 'dropdown',
+                'options' => [
                     'none' => Lang::get('indikator.qedit::lang.widget.editor_none'),
                     'rich' => Lang::get('indikator.qedit::lang.widget.editor_rich')
                 ]
@@ -72,21 +72,21 @@ class Qedit extends ReportWidgetBase
                 'validationMessage' => 'indikator.qedit::lang.widget.error_number'
             ],
             'size' => [
-                'title'             => 'indikator.qedit::lang.widget.size_title',
-                'description'       => 'indikator.qedit::lang.widget.size_description',
-                'default'           => 'huge',
-                'type'              => 'dropdown',
-                'options'           => [
+                'title'       => 'indikator.qedit::lang.widget.size_title',
+                'description' => 'indikator.qedit::lang.widget.size_description',
+                'default'     => 'huge',
+                'type'        => 'dropdown',
+                'options'     => [
                     'large' => Lang::get('indikator.qedit::lang.widget.size_large'),
                     'huge'  => Lang::get('indikator.qedit::lang.widget.size_huge'),
                     'giant' => Lang::get('indikator.qedit::lang.widget.size_giant')
                 ]
             ],
             'theme' => [
-                'title'             => 'indikator.qedit::lang.widget.theme_title',
-                'description'       => 'indikator.qedit::lang.widget.theme_description',
-                'default'           => true,
-                'type'              => 'checkbox'
+                'title'       => 'indikator.qedit::lang.widget.theme_title',
+                'description' => 'indikator.qedit::lang.widget.theme_description',
+                'default'     => true,
+                'type'        => 'checkbox'
             ]
         ];
     }
