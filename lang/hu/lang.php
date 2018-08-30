@@ -8,9 +8,9 @@ return [
     ],
     'widget' => [
         'type' => 'Típus',
-        'type_page' => 'Oldalak',
+        'type_page' => 'Lapok',
         'type_content' => 'Tartalom',
-        'type_static_pages' => 'Lapok',
+        'type_static_pages' => 'Statikus lapok',
         'type_partials' => 'Részlapok',
         'type_layouts' => 'Elrendezések',
         'editor' => 'Szerkesztő típusa',
@@ -26,8 +26,8 @@ return [
         'theme_title' => 'Alapértelmezett téma',
         'theme_description' => 'Csak az aktív téma fájlai listázódnak.',
         'error_number' => 'A mező csak számokat tartalmazhat.',
-        'error_page' => 'Válasszon ki egy oldalt a szerkesztéshez.',
-        'select' => '-- válasszon --',
+        'error_page' => 'Válasszon ki egy tartalmat a szerkesztéshez.',
+        'select' => '-- Válasszon --',
         'modify' => 'Utoljára módosítva',
         'nodate' => 'nincs adat'
     ]

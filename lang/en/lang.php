@@ -26,8 +26,8 @@ return [
         'theme_title' => 'Show the default theme',
         'theme_description' => 'List only the files of activated theme.',
         'error_number' => 'The field can only contain numbers.',
-        'error_page' => 'Please select page to edit.',
-        'select' => '-- select --',
+        'error_page' => 'Please select a content to edit.',
+        'select' => '-- Select --',
         'modify' => 'Last modify',
         'nodate' => 'no data'
     ]
