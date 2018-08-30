@@ -25,7 +25,7 @@ class Qedit extends ReportWidgetBase
             $this->addJs('/modules/backend/formwidgets/codeeditor/assets/js/build-min.js');
 
             if ($lang = $this->getValidEditorLang()) {
-                $this->addJs('https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.3.4/js/languages/'.$lang.'.js');
+                $this->addJs('/modules/backend/formwidgets/richeditor/assets/vendor/froala/js/languages/'.$lang.'.js');
             }
         }
 
@@ -105,6 +105,51 @@ class Qedit extends ReportWidgetBase
 
             closedir($themes);
         }
+
+        if (count($this->vars['themes']) == 1 || $this->property('theme')) {
+            $this->vars['items'] = $this->listFiles('themes/'.$this->vars['theme'].'/$', $this->property('type'));
+        }
+        else {
+            $this->vars['items'] = '';
+            foreach ($this->vars['themes'] as $name) {
+                $this->vars['items'] .= '<optgroup label="'.$name.'">'.$this->listFiles('themes/'.$name.'/$', $this->property('type')).'</optgroup>';
+            }
+        }
+    }
+
+    public function listFiles($path = '', $type = '', &$files = '') {
+        if ($type == 'static_pages') {
+            $path = str_replace('$', 'content/static-pages', $path);
+        }
+        else {
+            if ($type == 'content' && substr_count($path, 'static-pages') > 0) {
+                return $files;
+            }
+
+            $path = str_replace('$', $type, $path);
+        }
+
+        if (!File::isDirectory(base_path().'/'.$path)) {
+            return $files;
+        }
+
+        if ($folder = opendir(base_path().'/'.$path)) {
+            $path = str_replace('themes/', '', $path);
+
+            while ($file = readdir($folder)) {
+                if (File::isFile($sub = base_path().'/themes/'.$path.'/'.$file)) {
+                    $files .= '<option value="'.$path.'/'.$file.'">'.substr($file, 0, strrpos($file, '.')).'</option>';
+                }
+
+                else if ($file != '.' && $file != '..') {
+                    $this->listFiles($sub, $type, $files);
+                }
+            }
+
+            closedir($folder);
+        }
+
+        return $files;
     }
 
     public function onQeditSave()
