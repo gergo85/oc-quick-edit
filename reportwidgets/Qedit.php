@@ -93,7 +93,10 @@ class Qedit extends ReportWidgetBase
 
     protected function loadData()
     {
+        // Name of activated theme
         $this->vars['theme'] = Theme::getEditTheme()->getDirName();
+
+        // Name of all themes
         $this->vars['themes'] = [];
 
         if ($themes = opendir('themes')) {
@@ -106,62 +109,57 @@ class Qedit extends ReportWidgetBase
             closedir($themes);
         }
 
+        // Name of root folder
         if (count($this->vars['themes']) == 1 || $this->property('theme')) {
-            $this->vars['items'] = $this->listFiles('themes/'.$this->vars['theme'].'/$', $this->property('type'));
+            $rootFolder = '/themes/'.$this->vars['theme'];
+            $prefix = false;
         }
         else {
-            $this->vars['items'] = '';
-            foreach ($this->vars['themes'] as $name) {
-                $this->vars['items'] .= '<optgroup label="'.$name.'">'.$this->listFiles('themes/'.$name.'/$', $this->property('type')).'</optgroup>';
-            }
-        }
-    }
-
-    public function listFiles($path = '', $type = '', &$files = '') {
-        if ($type == 'static_pages') {
-            $path = str_replace('$', 'content/static-pages', $path);
-        }
-        else {
-            if ($type == 'content' && substr_count($path, 'static-pages') > 0) {
-                return $files;
-            }
-
-            $path = str_replace('$', $type, $path);
+            $rootFolder = '/themes';
+            $prefix = true;
         }
 
-        if (!File::isDirectory(base_path().'/'.$path)) {
-            return $files;
-        }
+        // All files from themes folder
+        $this->vars['items'] = $prevFolder = '';
+        $type = $this->property('type');
 
-        if ($folder = opendir(base_path().'/'.$path)) {
-            $path = str_replace('themes/', '', $path);
+        $files = File::allFiles(base_path().$rootFolder);
+        asort($files);
 
-            while ($file = readdir($folder)) {
-                if (File::isFile($sub = base_path().'/themes/'.$path.'/'.$file)) {
-                    $files .= '<option value="'.$path.'/'.$file.'">'.substr($file, 0, strrpos($file, '.')).'</option>';
-                }
+        foreach ($files as $file) {
+            $file = str_replace(base_path().'/themes/', '', $file);
+            $path = explode('/', $file);
 
-                else if ($file != '.' && $file != '..') {
-                    $this->listFiles($sub, $type, $files);
-                }
+            // Is not a current folder
+            if (($type != 'static_pages' && ($type != $path[1] || $path[2] == 'static-pages')) || ($type == 'static_pages' && (!isset($path[2]) || $path[2] != 'static-pages'))) {
+                continue;
             }
 
-            closedir($folder);
-        }
+            // Make short file path
+            $shortFile = str_replace([$path[0].'/', $path[1].'/'], '', $file);
+            if ($type == 'static_pages') {
+                $shortFile = str_replace($path[2].'/', '', $shortFile);
+            }
 
-        return $files;
+            // Are there more themes?
+            $prefix = $prefix ? $path[0].' | ' : '';
+
+            // Add file to list
+            $this->vars['items'] .= '<option value="'.$file.'">'.$prefix.substr($shortFile, 0, strrpos($shortFile, '.')).'</option>';
+        }
     }
 
     public function onQeditSave()
     {
-        $page = post('page');
+        $path = post('page');
 
-        if (!empty($page)) {
+        if (!empty($path)) {
             $theme = Theme::getEditTheme()->getDirName();
             $type = $this->property('type');
 
+            // Complex content
             if ($type == 'layouts' || $type == 'pages' || $type == 'static_pages') {
-                $original = File::get(base_path().'/themes/'.$page);
+                $original = File::get(base_path().'/themes/'.$path);
 
                 if (substr_count($original, '<?php') == 0) {
                     $setting = substr($original, 0, strpos($original, '==') + 2)."\n";
@@ -173,11 +171,13 @@ class Qedit extends ReportWidgetBase
                 $content = $setting.post('content');
             }
 
+            // Simple content
             else {
                 $content = post('content');
             }
 
-            File::put('themes/'.$page, $content);
+            // Save changes
+            File::put('themes/'.$path, $content);
 
             Flash::success(Lang::get('cms::lang.template.saved'));
         }
