@@ -19,8 +19,20 @@ class Plugin extends PluginBase
     {
         return [
             'Indikator\Qedit\ReportWidgets\Qedit' => [
-                'label'   => 'indikator.qedit::lang.plugin.name',
-                'context' => 'dashboard'
+                'label'       => 'indikator.qedit::lang.plugin.name',
+                'context'     => 'dashboard',
+                'permissions' => ['indikator.qedit.widget']
+            ]
+        ];
+    }
+
+    public function registerPermissions()
+    {
+        return [
+            'indikator.qedit.widget' => [
+                'tab'   => 'indikator.qedit::lang.plugin.name',
+                'label' => 'indikator.qedit::lang.widget.permission',
+                'roles' => ['publisher']
             ]
         ];
     }

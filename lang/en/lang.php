@@ -27,8 +27,9 @@ return [
         'theme_description' => 'List only the files of activated theme.',
         'error_number' => 'The field can only contain numbers.',
         'error_page' => 'Please select a content to edit.',
-        'select' => '-- Select --',
+        'select' => '-- select --',
         'modify' => 'Last modify',
-        'nodate' => 'no data'
+        'nodate' => 'no data',
+        'permission' => 'Manage the widget on Dashboard'
     ]
 ];

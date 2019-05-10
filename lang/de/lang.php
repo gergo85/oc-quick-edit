@@ -29,6 +29,7 @@ return [
         'error_page' => 'Bitte wählen Sie Seite zu bearbeiten.',
         'select' => '-- wählen --',
         'modify' => 'Berichtigung',
-        'nodate' => 'Keine Daten'
+        'nodate' => 'Keine Daten',
+        'permission' => 'Verwalten Sie das Widget'
     ]
 ];

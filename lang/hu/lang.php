@@ -27,8 +27,9 @@ return [
         'theme_description' => 'Csak az aktív téma fájlai listázódnak.',
         'error_number' => 'A mező csak számokat tartalmazhat.',
         'error_page' => 'Válasszon ki egy tartalmat a szerkesztéshez.',
-        'select' => '-- Válasszon --',
+        'select' => '-- válasszon --',
         'modify' => 'Utoljára módosítva',
-        'nodate' => 'nincs adat'
+        'nodate' => 'nincs adat',
+        'permission' => 'Widget kezelése a Vezérlőpulton'
     ]
 ];
