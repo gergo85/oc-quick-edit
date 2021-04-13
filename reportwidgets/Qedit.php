@@ -128,6 +128,7 @@ class Qedit extends ReportWidgetBase
 
         foreach ($files as $file) {
             $file = str_replace(base_path().'/themes/', '', $file);
+            $file = str_replace('\\', '/', $file);
             $path = explode('/', $file);
 
             // Is not a current folder
