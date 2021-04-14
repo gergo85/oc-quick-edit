@@ -17,6 +17,7 @@ Edit easily and effectively the theme files of your website via dashboard widget
 ## Available languages
 * en - English
 * de - Deutsch
+* es - Español
 * hu - Magyar
 
 ## Installation
