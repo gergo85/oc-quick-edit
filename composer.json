@@ -1,0 +1,11 @@
+{
+    "name": "indikator/qedit-plugin",
+    "type": "october-plugin",
+    "description": "Edit easily and effectively the theme files of your website via dashboard widget.",
+    "homepage": "https://octobercms.com/plugin/indikator-qedit",
+    "keywords": ["october", "octobercms"],
+    "license": "MIT",
+    "require": {
+        "composer/installers": "~1.0"
+    }
+}
